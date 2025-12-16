@@ -1,0 +1,23 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Build / Expo
+.expo/
+dist/
+web-build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ambiente e Chaves (Segurança!)
+.env
+.env.local
+*.env
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
