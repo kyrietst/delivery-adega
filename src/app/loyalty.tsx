@@ -39,7 +39,7 @@ export default function LoyaltyScreen() {
     const levelProgress = 75; // 75% to next level
 
     return (
-        <View className="flex-1 bg-background-dark">
+        <View className="flex-1 bg-ui-bg">
             <StatusBar barStyle="light-content" />
 
             {/* Background Effects */}
@@ -81,7 +81,7 @@ export default function LoyaltyScreen() {
                         </Text>
                         <View className="flex-row items-center gap-2">
                             <MaterialIcons name="stars" size={14} color="#46ec13" />
-                            <Text className="text-primary text-sm font-semibold tracking-wide uppercase">
+                            <Text className="text-brand text-sm font-semibold tracking-wide uppercase">
                                 Level 5 • Grand Cru Member
                             </Text>
                         </View>
@@ -257,7 +257,7 @@ export default function LoyaltyScreen() {
                             shadowRadius: 15,
                         }}
                     >
-                        <Text className="text-background-dark font-bold">Claim</Text>
+                        <Text className="text-ui-bg font-bold">Claim</Text>
                         <MaterialIcons name="arrow-forward" size={18} color="#142210" />
                     </TouchableOpacity>
                 </SkiaGlassCard>

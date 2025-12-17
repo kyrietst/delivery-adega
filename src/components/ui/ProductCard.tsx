@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { SkiaGlassCard } from './SkiaGlassCard';
+import { colors } from '@/theme/colors';
 
 interface ProductCardProps {
     id: string | number;
@@ -45,12 +46,12 @@ export function ProductCard({
             <SkiaGlassCard
                 className="p-3 rounded-[24px]"
                 intensity={15}
-                tint="rgba(255, 255, 255, 0.05)"
+                tint={colors.ui.surface}
             >
                 {/* Trending Badge */}
                 {isTrending && (
                     <View
-                        className="absolute -top-2 -right-2 z-10 flex-row items-center bg-[#2a2a2a] px-2.5 py-1 rounded-full border border-white/10"
+                        className="absolute -top-2 -right-2 z-10 flex-row items-center bg-ui-bg-secondary px-2.5 py-1 rounded-full border border-ui-border"
                         style={{
                             shadowColor: '#000',
                             shadowOffset: { width: 0, height: 4 },
@@ -59,8 +60,8 @@ export function ProductCard({
                             elevation: 5,
                         }}
                     >
-                        <MaterialIcons name="bolt" size={10} color="#46ec13" />
-                        <Text className="text-[10px] font-bold text-white uppercase ml-1">
+                        <MaterialIcons name="bolt" size={10} color={colors.brand.DEFAULT} />
+                        <Text className="text-[10px] font-bold text-text-primary uppercase ml-1">
                             Trending
                         </Text>
                     </View>
@@ -77,21 +78,21 @@ export function ProductCard({
 
                 {/* Product Info */}
                 <View className="px-1 pb-1">
-                    <Text className="text-white font-bold text-base" numberOfLines={1}>
+                    <Text className="text-text-primary font-bold text-base" numberOfLines={1}>
                         {name}
                     </Text>
-                    <Text className="text-white/50 text-xs mb-3">
+                    <Text className="text-text-muted text-xs mb-3">
                         {category}
                     </Text>
 
                     <View className="flex-row items-center justify-between">
-                        <Text className="text-white font-bold text-lg">{price}</Text>
+                        <Text className="text-text-primary font-bold text-lg">{price}</Text>
                         <TouchableOpacity
                             onPress={handleAddToCart}
-                            className="w-9 h-9 rounded-full bg-white/10 items-center justify-center"
+                            className="w-9 h-9 rounded-full bg-ui-surface items-center justify-center"
                             activeOpacity={0.7}
                         >
-                            <MaterialIcons name="add" size={20} color="white" />
+                            <MaterialIcons name="add" size={20} color={colors.text.primary} />
                         </TouchableOpacity>
                     </View>
                 </View>

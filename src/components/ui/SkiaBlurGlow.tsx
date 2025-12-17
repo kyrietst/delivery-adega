@@ -1,6 +1,7 @@
 import React from 'react';
 import { Canvas, Circle, Blur, Group } from '@shopify/react-native-skia';
 import { View, ViewProps, useWindowDimensions } from 'react-native';
+import { colors } from '@/theme/colors';
 
 interface SkiaBlurGlowProps extends ViewProps {
     color?: string;
@@ -10,7 +11,7 @@ interface SkiaBlurGlowProps extends ViewProps {
 }
 
 export function SkiaBlurGlow({
-    color = 'rgba(70, 236, 19, 0.25)',
+    color = colors.brand.highlight,
     blur = 80,
     size = 200,
     offsetY = -50,

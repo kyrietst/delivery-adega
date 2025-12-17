@@ -21,7 +21,7 @@ export default function TrackingScreen() {
     const progressPercent = 70;
 
     return (
-        <View className="flex-1 bg-background-dark">
+        <View className="flex-1 bg-ui-bg">
             <StatusBar barStyle="light-content" />
 
             {/* ===== Map Background ===== */}
@@ -58,7 +58,7 @@ export default function TrackingScreen() {
                                 <View className="absolute inset-0 bg-primary rounded-full opacity-75" />
                                 <View className="w-2 h-2 bg-primary rounded-full" />
                             </View>
-                            <Text className="text-[10px] font-bold uppercase tracking-widest text-primary">
+                            <Text className="text-[10px] font-bold uppercase tracking-widest text-brand">
                                 In Transit
                             </Text>
                         </View>

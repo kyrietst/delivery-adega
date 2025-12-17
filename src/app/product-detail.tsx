@@ -76,7 +76,7 @@ export default function ProductDetailScreen() {
     ];
 
     return (
-        <View className="flex-1 bg-background-dark">
+        <View className="flex-1 bg-ui-bg">
             <StatusBar barStyle="light-content" />
 
             {/* ===== AMBIENT BACKGROUND GLOW ===== */}
@@ -142,7 +142,7 @@ export default function ProductDetailScreen() {
                                 elevation: 10,
                             }}
                         >
-                            <Text className="text-primary font-extrabold text-xl leading-none">98</Text>
+                            <Text className="text-brand font-extrabold text-xl leading-none">98</Text>
                             <Text className="text-[9px] uppercase tracking-widest font-bold text-white/80">Points</Text>
                         </View>
                     </Animated.View>
@@ -178,7 +178,7 @@ export default function ProductDetailScreen() {
                         {/* Header: Brand + Price */}
                         <View className="flex-row justify-between items-start mb-6">
                             <View className="flex-1 mr-4">
-                                <Text className="text-primary text-xs font-bold tracking-[3px] uppercase mb-1">
+                                <Text className="text-brand text-xs font-bold tracking-[3px] uppercase mb-1">
                                     {product.grape}
                                 </Text>
                                 <Text className="text-white text-3xl font-bold leading-tight">

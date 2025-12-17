@@ -9,6 +9,7 @@ import {
     rect,
 } from "@shopify/react-native-skia";
 import { cssInterop } from "nativewind";
+import { colors } from "@/theme/colors";
 
 interface SkiaGlassCardProps extends ViewProps {
     intensity?: number;
@@ -18,7 +19,7 @@ interface SkiaGlassCardProps extends ViewProps {
 }
 
 const NativeSkiaGlassCard = React.forwardRef<View, SkiaGlassCardProps>(
-    ({ intensity = 10, tint = "rgba(255,255,255,0.05)", style, children, ...props }, ref) => {
+    ({ intensity = 10, tint = colors.ui.surface, style, children, ...props }, ref) => {
 
         // Transforma o estilo do NativeWind/StyleSheet em objeto
         const styles = useMemo(() => StyleSheet.flatten(style), [style]);

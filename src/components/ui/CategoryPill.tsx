@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, ImageSourcePropType } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import { colors } from '@/theme/colors';
 
 interface CategoryPillProps {
     name: string;
@@ -25,11 +26,11 @@ export function CategoryPill({ name, icon, image, isActive = false, onPress }: C
         >
             <View
                 className={`w-[76px] h-[76px] rounded-full p-1 ${isActive
-                        ? 'border-2 border-primary'
-                        : 'border border-white/10 bg-white/5'
+                    ? 'border-2 border-brand'
+                    : 'border border-ui-border bg-ui-surface'
                     }`}
                 style={isActive ? {
-                    shadowColor: '#46ec13',
+                    shadowColor: colors.brand.DEFAULT,
                     shadowOffset: { width: 0, height: 0 },
                     shadowOpacity: 0.3,
                     shadowRadius: 10,
@@ -50,12 +51,12 @@ export function CategoryPill({ name, icon, image, isActive = false, onPress }: C
                     <MaterialIcons
                         name={icon}
                         size={24}
-                        color="white"
+                        color={colors.text.primary}
                     />
                 </View>
             </View>
             <Text
-                className={`text-xs font-medium mt-2 ${isActive ? 'text-primary font-bold' : 'text-white/60'
+                className={`text-xs font-medium mt-2 ${isActive ? 'text-brand font-bold' : 'text-text-secondary'
                     }`}
             >
                 {name}
