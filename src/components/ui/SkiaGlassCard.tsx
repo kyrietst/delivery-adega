@@ -1,56 +1,52 @@
-import React from "react";
-import { View, ViewProps } from "react-native";
-import { Canvas, RoundedRect, Blur, Paint } from "@shopify/react-native-skia";
+import React, { useMemo } from "react";
+import { View, ViewProps, StyleSheet } from "react-native";
+import {
+    Canvas,
+    BackdropFilter,
+    Blur,
+    Fill,
+    rrect,
+    rect,
+} from "@shopify/react-native-skia";
+import { cssInterop } from "nativewind";
 
 interface SkiaGlassCardProps extends ViewProps {
-    children: React.ReactNode;
-    blur?: number;
-    opacity?: number;
-    borderOpacity?: number;
-    borderRadius?: number;
+    intensity?: number;
+    tint?: string;
+    className?: string;
+    children?: React.ReactNode;
 }
 
-export function SkiaGlassCard({
-    children,
-    blur = 20,
-    opacity = 0.05,
-    borderOpacity = 0.1,
-    borderRadius = 24,
-    style,
-    ...props
-}: SkiaGlassCardProps) {
-    return (
-        <View style={[{ position: "relative" }, style]} {...props}>
-            {/* Skia Glass Layer */}
-            <Canvas style={{ position: "absolute", width: "100%", height: "100%" }}>
-                {/* Background with blur */}
-                <RoundedRect
-                    x={0}
-                    y={0}
-                    width="100%"
-                    height="100%"
-                    r={borderRadius}
-                >
-                    <Paint color={`rgba(255, 255, 255, ${opacity})`}>
-                        <Blur blur={blur} />
-                    </Paint>
-                </RoundedRect>
+const NativeSkiaGlassCard = React.forwardRef<View, SkiaGlassCardProps>(
+    ({ intensity = 10, tint = "rgba(255,255,255,0.05)", style, children, ...props }, ref) => {
 
-                {/* Border */}
-                <RoundedRect
-                    x={1}
-                    y={1}
-                    width="99%"
-                    height="99%"
-                    r={borderRadius}
-                    style="stroke"
-                    strokeWidth={1}
-                    color={`rgba(255, 255, 255, ${borderOpacity})`}
-                />
-            </Canvas>
+        // Transforma o estilo do NativeWind/StyleSheet em objeto
+        const styles = useMemo(() => StyleSheet.flatten(style), [style]);
 
-            {/* Content */}
-            <View style={{ padding: 0 }}>{children}</View>
-        </View>
-    );
-}
+        return (
+            <View ref={ref} style={[styles, { overflow: 'hidden' }]} {...props}>
+                {/* Camada do Skia (Backdrop Blur Real) */}
+                <Canvas style={StyleSheet.absoluteFill}>
+                    <BackdropFilter
+                        filter={<Blur blur={intensity} />}
+                        clip={rrect(rect(0, 0, 9999, 9999), 0, 0)}
+                    >
+                        <Fill color={tint} />
+                    </BackdropFilter>
+                </Canvas>
+
+                {/* Conteúdo dos Filhos (Renderizado pelo React Native) */}
+                <View style={{ flex: 1, zIndex: 1 }}>
+                    {children}
+                </View>
+            </View>
+        );
+    }
+);
+
+// Habilita classes do Tailwind (className)
+cssInterop(NativeSkiaGlassCard, {
+    className: "style",
+});
+
+export { NativeSkiaGlassCard as SkiaGlassCard };
